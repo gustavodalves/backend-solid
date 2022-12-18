@@ -5,7 +5,7 @@ import { Password } from './props/password';
 import { v4 as uuidv4 } from 'uuid';
 import { Email } from './props/email';
 
-interface UserProps {
+export interface UserProps {
     id: string;
     name: string;
     email: Email;

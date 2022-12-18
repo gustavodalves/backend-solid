@@ -8,27 +8,22 @@ export interface UserRequest {
     birthDate?: Date;
 }
 
-interface UserResponse {
-    user: User;
-}
-
 export class CreateUserUseCase {
-    public o = 'odasdas';
     constructor(private userRepository: UserRepository) {}
 
 
-    async execute(request: UserRequest): Promise<UserResponse> {
-        console.log('entrei');
+    async execute(request: UserRequest): Promise<any> {
         const { name, email, password } = request;
 
         const user = new User({
             name, email, password, birthDate: new Date()
         });
 
-        await this.userRepository.create(user);
+        const newUser = await this.userRepository.create(user);
 
         return {
-            user
+            ...newUser,
+            password: undefined,
         };
     }
 }
